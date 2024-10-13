@@ -1,3 +1,3 @@
 export default function Page() {
-  return <div>create a new recipe</div>;
+  return <main className="px-8 py-5">create a new recipe</main>;
 }
