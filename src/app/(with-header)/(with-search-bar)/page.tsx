@@ -1,9 +1,13 @@
 import { RecipeData } from "@/types";
 import RecipeItem from "@/app/components/RecipeItem";
 
+const REVALIDATE_TIME_24_HOURS = 86400;
+
+export const revalidate = REVALIDATE_TIME_24_HOURS;
+
 async function AllRecipes() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe`, {
-    cache: "force-cache",
+    next: { revalidate: REVALIDATE_TIME_24_HOURS },
   });
   if (!res.ok) return <p>오류가 발생했습니다.</p>;
 
