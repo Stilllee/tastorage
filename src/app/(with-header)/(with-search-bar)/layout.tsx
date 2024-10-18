@@ -1,4 +1,5 @@
 import SearchBar from "@/app/components/SearchBar";
+import { Suspense } from "react";
 
 export default function WithSearchBarLayout({
   children,
@@ -7,7 +8,9 @@ export default function WithSearchBarLayout({
 }) {
   return (
     <>
-      <SearchBar />
+      <Suspense>
+        <SearchBar />
+      </Suspense>
       {children}
     </>
   );
