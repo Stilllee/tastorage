@@ -1,5 +1,7 @@
 import { RecipeData } from "@/types";
 import RecipeItem from "@/app/components/RecipeItem";
+import RecipeListSkeleton from "@/app/components/loading/RecipeListSkeleton";
+import { Suspense } from "react";
 
 const REVALIDATE_TIME_24_HOURS = 86400;
 
@@ -28,7 +30,20 @@ export default function Home() {
   return (
     <>
       <h2 className="sr-only">레시피 목록</h2>
-      <AllRecipes />
+
+      <Suspense
+        fallback={
+          <ul
+            className="mt-4 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+            role="status"
+            aria-live="polite"
+          >
+            <RecipeListSkeleton count={6} />
+          </ul>
+        }
+      >
+        <AllRecipes />
+      </Suspense>
     </>
   );
 }
