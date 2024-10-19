@@ -7,6 +7,8 @@ export default function LS({ className = "", size = 200, color = "#00c471" }) {
     <div
       className={`inline-block ${className}`}
       style={{ width: size, height: size }}
+      role="status"
+      aria-live="polite"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -45,6 +47,7 @@ export default function LS({ className = "", size = 200, color = "#00c471" }) {
           ))}
         </text>
       </svg>
+      <span className="sr-only">로딩중</span>
     </div>
   );
 }
