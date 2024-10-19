@@ -1,12 +1,13 @@
 import IngredientItem from "@/app/components/IngredientItem";
 import { RecipeData } from "@/types";
+import { notFound } from "next/navigation";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe/${params.id}`,
     { cache: "force-cache" },
   );
-  if (!res.ok) <p>오류가 발생했습니다.</p>;
+  if (!res.ok) notFound();
 
   const { title, servings, ingredient, directions }: RecipeData =
     await res.json();
