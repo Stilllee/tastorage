@@ -23,7 +23,7 @@ export default function NotFound() {
           className="w-60 rounded-xl bg-main py-3 text-center text-white"
           onClick={() => router.replace("/")}
         >
-          테이스토리지 홈
+          홈으로 돌아가기
         </button>
       </div>
     </main>
