@@ -11,7 +11,11 @@ async function AllRecipes() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe`, {
     next: { revalidate: REVALIDATE_TIME_24_HOURS },
   });
-  if (!res.ok) return <p>오류가 발생했습니다.</p>;
+  if (!res.ok) {
+    throw new Error(
+      `레시피 목록을 가져오지 못했습니다: ${res.status} ${res.statusText}`,
+    );
+  }
 
   const allRecipes: RecipeData[] = await res.json();
 

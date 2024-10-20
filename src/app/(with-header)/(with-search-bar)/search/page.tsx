@@ -7,7 +7,11 @@ async function SearchResult({ q }: { q: string }) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe/search?q=${q}`,
   );
-  if (!res.ok) return <p>오류가 발생했습니다.</p>;
+  if (!res.ok) {
+    throw new Error(
+      `검색결과를 가져오지 못했습니다: ${res.status} ${res.statusText}`,
+    );
+  }
 
   const searchRecipes: RecipeData[] = await res.json();
   return (

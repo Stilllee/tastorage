@@ -7,7 +7,13 @@ export default async function Page({ params }: { params: { id: string } }) {
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe/${params.id}`,
     { cache: "force-cache" },
   );
-  if (!res.ok) notFound();
+  if (res.status === 404) return notFound();
+
+  if (!res.ok) {
+    throw new Error(
+      `레시피 정보를 가져오지 못했습니다: ${res.status} ${res.statusText}`,
+    );
+  }
 
   const { title, servings, ingredient, directions }: RecipeData =
     await res.json();
