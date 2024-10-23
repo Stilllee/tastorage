@@ -6,3 +6,9 @@ html,
 body {
   color: #212529;
 }
+
+@layer components {
+  .page-padding {
+    @apply px-8 py-5;
+  }
+}

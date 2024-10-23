@@ -8,7 +8,7 @@ export default function WithHeaderLayout({
   return (
     <>
       <Header />
-      <main className="px-8 py-5">{children}</main>
+      <main className="page-padding">{children}</main>
     </>
   );
 }

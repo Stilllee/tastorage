@@ -6,7 +6,7 @@ export default function NotFound() {
   const router = useRouter();
 
   return (
-    <main className="flex h-screen flex-col items-center justify-center gap-16 px-8 py-5">
+    <main className="flex h-screen flex-col items-center justify-center gap-16">
       <h1 className="sr-only">404 - Page Not Found</h1>
       <span
         className="block text-center text-9xl font-bold text-main"
