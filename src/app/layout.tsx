@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import Header from "./components/Header";
+import { AdminProvider } from "@/contexts/AdminContext";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
@@ -22,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={pretendard.className}>
-      <body>{children}</body>
+      <body>
+        <AdminProvider>{children}</AdminProvider>
+      </body>
     </html>
   );
 }

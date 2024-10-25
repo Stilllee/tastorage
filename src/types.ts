@@ -5,3 +5,9 @@ export interface RecipeData {
   ingredient: string[];
   directions: string;
 }
+
+export interface AdminContextType {
+  isAdmin: boolean;
+  login: (token: string) => void;
+  logout: () => void;
+}
