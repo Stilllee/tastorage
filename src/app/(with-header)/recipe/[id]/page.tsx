@@ -1,8 +1,11 @@
 import IngredientItem from "@/app/components/IngredientItem";
+import MoreOptionButton from "@/app/components/MoreOptionButton";
 import { RecipeData } from "@/types";
 import { notFound } from "next/navigation";
 
 export default async function Page({ params }: { params: { id: string } }) {
+  const isAdmin = true;
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe/${params.id}`,
     { cache: "force-cache" },
@@ -19,8 +22,10 @@ export default async function Page({ params }: { params: { id: string } }) {
     await res.json();
 
   return (
-    <article className="py-3">
+    <article className="relative py-3">
       <h2 className="text-2xl font-bold">{title}</h2>
+      {isAdmin && <MoreOptionButton />}
+
       <span className="my-4 inline-block rounded-full bg-main px-2 py-1 text-sm font-bold text-white">
         {servings}인분
       </span>
