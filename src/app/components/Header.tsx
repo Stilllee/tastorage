@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useAdmin } from "@/contexts/AdminContext";
 
 export default function Header() {
-  const isAdmin = true;
+  const { isAdmin } = useAdmin();
 
   const adminBtnStyle =
     "text-md text-nowrap rounded-lg border border-gray px-3 py-1";

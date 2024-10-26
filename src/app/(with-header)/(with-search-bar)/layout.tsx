@@ -1,4 +1,4 @@
-import AddRecipeButton from "@/app/components/AddRecipeButton";
+import AdminActions from "@/app/components/AdminActions";
 import SearchBar from "@/app/components/SearchBar";
 import { Suspense } from "react";
 
@@ -7,15 +7,13 @@ export default function WithSearchBarLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const isAdmin = true;
-
   return (
     <>
       <Suspense>
         <SearchBar />
       </Suspense>
       {children}
-      {isAdmin && <AddRecipeButton />}
+      <AdminActions />
     </>
   );
 }
