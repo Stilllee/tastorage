@@ -29,9 +29,9 @@ export default function AdminLoginForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-full max-w-xl flex-col items-center gap-6 px-8 py-5"
+      className="flex w-full max-w-xl flex-col items-center px-8 py-5"
     >
-      <span className="text-xl font-semibold text-main">TASTORAGE</span>
+      <span className="mb-6 text-xl font-semibold text-main">TASTORAGE</span>
       <div className="relative w-full">
         <input
           className="h-12 w-full items-center rounded-[4px] border border-lightGray px-3 py-3 text-sm text-textBlack outline-none placeholder:text-gray focus:border-main"
@@ -51,9 +51,10 @@ export default function AdminLoginForm() {
           {isHide ? <GrFormViewHide /> : <GrFormView />}
         </button>
       </div>
+      {error && <p className="mt-1 w-full text-sm text-red-500">{error}</p>}
       <button
         type="submit"
-        className="h-12 w-full rounded-[4px] border border-main bg-main px-3 text-sm font-bold text-white"
+        className="mt-6 h-12 w-full rounded-[4px] border border-main bg-main px-3 text-sm font-bold text-white"
       >
         관리자 로그인
       </button>
