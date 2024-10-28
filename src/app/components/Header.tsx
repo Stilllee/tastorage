@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useAdmin } from "@/contexts/AdminContext";
 
 export default function Header() {
-  const { isAdmin } = useAdmin();
+  const { isAdmin, logout } = useAdmin();
 
   const adminBtnStyle =
     "text-md text-nowrap rounded-lg border border-gray px-3 py-1";
@@ -17,7 +17,7 @@ export default function Header() {
         </Link>
       </h1>
       {isAdmin ? (
-        <button className={adminBtnStyle}>
+        <button className={adminBtnStyle} onClick={logout}>
           <span>관리자</span>
           <span className="ml-1 font-bold uppercase text-main">on</span>
         </button>
