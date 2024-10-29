@@ -2,21 +2,23 @@
 
 import { useEffect, useState } from "react";
 
+import Cookies from "js-cookie";
+
 export const useAdminState = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("adminToken");
+    const token = Cookies.get("adminToken");
     if (token) setIsAdmin(true);
   }, []);
 
   const login = (token: string) => {
-    localStorage.setItem("adminToken", token);
+    Cookies.set("adminToken", token);
     setIsAdmin(true);
   };
 
   const logout = () => {
-    localStorage.removeItem("adminToken");
+    Cookies.remove("adminToken");
     setIsAdmin(false);
   };
 
