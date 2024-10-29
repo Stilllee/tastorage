@@ -16,6 +16,9 @@ const config: Config = {
         lightGray: "#dee2e6",
         gray: "#ced4da",
       },
+      height: {
+        "screen-header": "calc(100vh - 64px)",
+      },
     },
   },
   plugins: [],

@@ -8,7 +8,7 @@ export default function WithHeaderLayout({
   return (
     <>
       <Header />
-      <main className="page-padding">{children}</main>
+      <main className="page-padding h-screen-header">{children}</main>
     </>
   );
 }
