@@ -7,12 +7,12 @@ import { useAdmin } from "@/contexts/AdminContext";
 
 export default function RecipeContent({ recipe }: { recipe: RecipeData }) {
   const { isAdmin } = useAdmin();
-  const { title, servings, ingredient, directions } = recipe;
+  const { id, title, servings, ingredient, directions } = recipe;
 
   return (
     <article className="relative py-3">
       <h2 className="text-2xl font-bold">{title}</h2>
-      {isAdmin && <MoreOptionButton />}
+      {isAdmin && <MoreOptionButton recipeId={id} />}
 
       <span className="my-4 inline-block rounded-full bg-main px-2 py-1 text-sm font-bold text-white">
         {servings}인분
