@@ -2,10 +2,13 @@
 
 import Button from "./Button";
 import IngredientInput from "./IngredientInput";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function RecipeForm() {
   const [ingredients, setIngredients] = useState<string[]>([]);
+
+  const router = useRouter();
 
   const handleAddIngredient = (newIngredient: string) => {
     setIngredients([...ingredients, newIngredient]);
@@ -64,7 +67,11 @@ export default function RecipeForm() {
         className="mt-4 h-3/5 resize-none rounded-md border border-lightGray px-5 py-4 shadow-sm outline-none"
       ></textarea>
       <div className="right-0 mt-5 flex justify-end">
-        <Button type="button" className="mr-3 rounded-md border-gray">
+        <Button
+          type="button"
+          onClick={() => router.replace("/")}
+          className="mr-3 rounded-md border-gray"
+        >
           취소
         </Button>
         <Button
