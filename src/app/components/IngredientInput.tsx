@@ -1,7 +1,5 @@
 "use client";
 
-import { IoIosClose, IoMdClose } from "react-icons/io";
-
 import IngredientItem from "./IngredientItem";
 import { IoCloseSharp } from "react-icons/io5";
 import { useState } from "react";
@@ -67,7 +65,7 @@ export default function IngredientInput({
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="outline-none"
+          className="align-middle outline-none"
         />
       </ul>
     </div>
