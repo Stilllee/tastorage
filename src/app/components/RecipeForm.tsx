@@ -5,7 +5,7 @@ import { useActionState, useEffect, useState } from "react";
 import Button from "./Button";
 import IngredientInput from "./IngredientInput";
 import { RecipeData } from "@/types";
-import { createRecipeAction } from "../actions/create-recipe.action";
+import { recipeFormAction } from "../actions/recipe-form.action";
 import { useRouter } from "next/navigation";
 
 interface RecipeFormProps {
@@ -17,10 +17,7 @@ export default function RecipeForm({ initialData }: RecipeFormProps) {
   const [ingredients, setIngredients] = useState<string[]>(
     initialData?.ingredient ?? [],
   );
-  const [state, formAction, isPending] = useActionState(
-    createRecipeAction,
-    null,
-  );
+  const [state, formAction, isPending] = useActionState(recipeFormAction, null);
 
   useEffect(() => {
     if (state?.error) {
@@ -53,6 +50,9 @@ export default function RecipeForm({ initialData }: RecipeFormProps) {
       action={handleAction}
       className="mx-auto flex h-full max-w-screen-md flex-col justify-center"
     >
+      {initialData && (
+        <input type="hidden" name="recipeId" value={initialData.id} />
+      )}
       <label htmlFor="recipe-title" className="sr-only">
         레시피 제목
       </label>

@@ -2,7 +2,10 @@
 
 import { revalidatePath } from "next/cache";
 
-export async function createRecipeAction(_: any, formData: FormData) {
+export async function recipeFormAction(_: any, formData: FormData) {
+  const recipeId = formData.get("recipeId")
+    ? Number(formData.get("recipeId"))
+    : null;
   const title = formData.get("title");
   const servings = formData.get("servings");
   const directions = formData.get("directions");
@@ -16,16 +19,14 @@ export async function createRecipeAction(_: any, formData: FormData) {
       directions,
     };
 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
+    const url = `${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe${recipeId ? `/${recipeId}` : ""}`;
+    const res = await fetch(url, {
+      method: recipeId ? "PATCH" : "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify(requestBody),
+    });
 
     if (!res.ok) {
       throw new Error(res.statusText);
