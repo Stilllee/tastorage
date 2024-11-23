@@ -5,6 +5,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { useState } from "react";
 
 interface IngredientInputProps {
+  isPending: boolean;
   ingredients: string[];
   onAdd: (newIngredient: string) => void;
   onRemove: (index: number) => void;
@@ -12,6 +13,7 @@ interface IngredientInputProps {
 }
 
 export default function IngredientInput({
+  isPending,
   ingredients,
   onAdd,
   onRemove,
@@ -44,6 +46,11 @@ export default function IngredientInput({
       <label htmlFor="recipe-ingredient" className="sr-only">
         재료
       </label>
+      <input
+        type="hidden"
+        name="ingredients_array"
+        value={JSON.stringify(ingredients)}
+      />
       <ul className="*:mr-2">
         {ingredients.map((ing, idx) => (
           <IngredientItem key={ing} ingredient={ing}>
@@ -65,6 +72,7 @@ export default function IngredientInput({
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
+          disabled={isPending}
           className="align-middle outline-none"
         />
       </ul>
