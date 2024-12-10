@@ -24,9 +24,10 @@ export default function RecipeForm({ initialData }: RecipeFormProps) {
       alert(state.error);
     }
     if (state?.status) {
-      router.replace("/");
+      console.log("이동할 URL:", initialData ? `/${initialData.id}` : "/");
+      router.replace(initialData ? `/recipe/${initialData.id}` : "/");
     }
-  }, [state, router]);
+  }, [state, router, initialData]);
 
   const handleAddIngredient = (newIngredient: string) => {
     setIngredients([...ingredients, newIngredient]);

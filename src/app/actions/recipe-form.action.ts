@@ -32,6 +32,9 @@ export async function recipeFormAction(_: any, formData: FormData) {
       throw new Error(res.statusText);
     }
 
+    if (recipeId) {
+      revalidatePath(`/recipe/${recipeId}`);
+    }
     revalidatePath("/");
     return { status: true, error: "" };
   } catch (error) {
