@@ -1,6 +1,7 @@
 "use client";
 
 import { RiMoreLine } from "react-icons/ri";
+import { deleteRecipeAction } from "../actions/recipe.action";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -9,6 +10,17 @@ export default function MoreOptionButton({ recipeId }: { recipeId: number }) {
   const router = useRouter();
 
   const optionBtnStyle = `rounded-lg px-3 py-2 hover:bg-[#e9ecef] `;
+
+  const handleDelete = async () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      const result = await deleteRecipeAction(recipeId);
+      if (result.status) {
+        router.replace("/");
+      } else {
+        alert(result.error);
+      }
+    }
+  };
 
   return (
     <>
@@ -26,7 +38,9 @@ export default function MoreOptionButton({ recipeId }: { recipeId: number }) {
           >
             수정
           </button>
-          <button className={optionBtnStyle}>삭제</button>
+          <button className={optionBtnStyle} onClick={handleDelete}>
+            삭제
+          </button>
         </div>
       )}
     </>

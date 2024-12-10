@@ -42,3 +42,24 @@ export async function recipeFormAction(_: any, formData: FormData) {
     return { status: false, error: `레시피 저장에 실패했습니다: ${error}` };
   }
 }
+
+export async function deleteRecipeAction(recipeId: number) {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe/${recipeId}`,
+      {
+        method: "DELETE",
+      },
+    );
+
+    if (!res.ok) {
+      throw new Error(res.statusText);
+    }
+
+    revalidatePath("/");
+    return { status: true, error: "" };
+  } catch (error) {
+    console.error(error);
+    return { status: false, error: `레시피 삭제에 실패했습니다: ${error}` };
+  }
+}

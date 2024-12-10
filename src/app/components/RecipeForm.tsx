@@ -5,7 +5,7 @@ import { useActionState, useEffect, useState } from "react";
 import Button from "./Button";
 import IngredientInput from "./IngredientInput";
 import { RecipeData } from "@/types";
-import { recipeFormAction } from "../actions/recipe-form.action";
+import { recipeFormAction } from "../actions/recipe.action";
 import { useRouter } from "next/navigation";
 
 interface RecipeFormProps {
