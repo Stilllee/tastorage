@@ -7,6 +7,10 @@
 1. [개요](#개요)
 2. [기술 스택](#기술-스택)
 3. [주요 기능 구현](#주요-기능-구현)
+   - [Server Components와 데이터 페칭](#1-server-components와-데이터-페칭)
+   - [Server Actions를 활용한 데이터 관리](#2-server-actions를-활용한-데이터-관리)
+   - [사용자 경험 최적화](#3-사용자-경험-최적화)
+   - [관리자 기능](#4-관리자-기능)
 
 <br />
 
@@ -15,43 +19,45 @@
 - **프로젝트 명**: TASTORAGE (Tasty + Storage)
 - **개발 기간**: 2024.10.12 ~ 2024.12.10 (2개월)
 - **배포 URL**: [https://tastorage.vercel.app](https://tastorage.vercel.app/)
+- **백엔드 서버**: [TASTORAGE API Server](https://github.com/Stilllee/tastorage-server)
 
 <br />
 
 ## 기술 스택
 
 <details>
-<summary>Next.js 15 (App Router)</summary>
+<summary style="font-size: 16px; font-weight: bold;">Next.js 15 (App Router)</summary>
+<div style="padding: 4px 20px;">
+<p>Next.js가 App Router를 공식 권장 방식으로 채택하고 있는 만큼, 변화하는 웹 개발 생태계에 맞춰 새로운 기술을 학습하고 프로젝트에 적용하고자 선택했습니다.</p>
 
-Next.js가 App Router를 공식 권장 방식으로 채택하고 있는 만큼, 변화하는 웹 개발 생태계에 맞춰 새로운 기술을 학습하고 프로젝트에 적용하고자 선택했습니다.
+<p>Server Components와 Server Actions의 도입으로 복잡한 상태 관리나 데이터 페칭 없이도 직관적인 데이터 처리가 가능했고, fetch 캐싱, revalidating, 동적/정적 렌더링 선택 등 다양한 캐시 전략을 활용해 더 나은 사용자 경험을 제공하고자 고민했습니다.</p>
 
-Server Components와 Server Actions의 도입으로 복잡한 상태 관리나 데이터 페칭 없이도 직관적인 데이터 처리가 가능했고, fetch 캐싱, revalidating, 동적/정적 렌더링 선택 등 다양한 캐시 전략을 활용해 더 나은 사용자 경험을 제공하고자 고민했습니다.
+</div>
+</details>
 
+<details style="margin: 4px 0">
+<summary style="font-size: 16px; font-weight: bold;">Tailwind CSS</summary>
+<div style="padding: 4px 20px;">
+<p>CSS-in-JS 라이브러리 없이도 생산성 높은 스타일링이 가능하며, Next.js와의 호환성이 높고 설정이 간단하다는 점에서 선택헀습니다.</p>
+
+<p>클래스명을 고민하거나 별도의 CSS 파일을 관리할 필요 없이 유틸리티 클래스만으로 일관된 스타일을 구현할 수 있었고, 특히 미디어 쿼리 없이 직관적인 반응형 디자인이 가능해 개발 효율이 높았습니다.</p>
+</div>
 </details>
 
 <details>
-<summary>Tailwind CSS</summary>
+<summary style="font-size: 16px; font-weight: bold;">TypeScript</summary>
+<div style="padding: 4px 20px;">
+<p>타입 시스템을 통해 안정적이고 유지보수가 용이한 코드베이스를 만들고자 사용했습니다.</p>
 
-CSS-in-JS 라이브러리 없이도 생산성 높은 스타일링이 가능하며, Next.js와의 호환성이 높고 설정이 간단하다는 점에서 선택헀습니다.
-
-클래스명을 고민하거나 별도의 CSS 파일을 관리할 필요 없이 유틸리티 클래스만으로 일관된 스타일을 구현할 수 있었고, 특히 미디어 쿼리 없이 직관적인 반응형 디자인이 가능해 개발 효율이 높았습니다.
-
-</details>
-
-<details>
-<summary>TypeScript</summary>
-
-타입 시스템을 통해 안정적이고 유지보수가 용이한 코드베이스를 만들고자 사용했습니다.
-
-컴포넌트 props부터 API 응답, 폼 데이터까지 프로젝트 전반의 데이터 흐름에서 타입 안정성을 확보할 수 있었고, IDE의 자동완성 기능을 활용하면서 개발 생산성도 크게 향상되었습니다.
-
+<p>컴포넌트 props부터 API 응답, 폼 데이터까지 프로젝트 전반의 데이터 흐름에서 타입 안정성을 확보할 수 있었고, IDE의 자동완성 기능을 활용하면서 개발 생산성도 크게 향상되었습니다.</p>
+</div>
 </details>
 
 <br />
 
 ## 주요 기능 구현
 
-### Server Components와 데이터 페칭
+### 1. Server Components와 데이터 페칭
 
 Server Components를 활용하여 서버사이드에서 데이터를 처리하고, 클라이언트로 전송되는 JavaScript 번들 크기를 최소화했습니다.
 
@@ -73,6 +79,8 @@ export default async function AllRecipes() {
   );
 }
 ```
+
+<br />
 
 ### 2. Server Actions를 활용한 데이터 관리
 
@@ -99,6 +107,8 @@ export async function recipeFormAction(_: any, formData: FormData) {
   }
 }
 ```
+
+<br />
 
 ### 3. 사용자 경험 최적화
 
@@ -129,6 +139,8 @@ export default function Home() {
   );
 }
 ```
+
+<br />
 
 ### 4. 관리자 기능
 
