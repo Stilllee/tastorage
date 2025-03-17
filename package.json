@@ -1,7 +1,35 @@
 {
   "name": "tastorage",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "Your personal recipe management web application for storing and organizing delicious recipes",
+  "author": {
+    "name": "Stilllee",
+    "email": "0132meta@gmail.com",
+    "url": "https://woodstock.hashnode.dev/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Stilllee/tastorage"
+  },
+  "license": "MIT",
+  "homepage": "https://tastorage.vercel.app",
+  "bugs": {
+    "url": "https://github.com/Stilllee/tastorage/issues"
+  },
+  "engines": {
+    "node": ">=18.17.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "recipe",
+    "recipe-management",
+    "next.js",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "web-application"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
