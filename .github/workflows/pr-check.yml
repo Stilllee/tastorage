@@ -15,9 +15,6 @@ jobs:
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
         with:
           node-version: "18"
           cache: "npm"
@@ -30,10 +27,12 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          NEXT_PUBLIC_API_SERVER_URL: ${{ secrets.NEXT_PUBLIC_API_SERVER_URL }}
 
       - name: Merge PR if build success
         if: success()
         run: |
           gh pr merge ${{ github.event.pull_request.number }} --merge
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_PAT }}
