@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,6 +32,19 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_API_SERVER_URL: ${{ secrets.NEXT_PUBLIC_API_SERVER_URL }}
+
+      - name: Check CodeRabbit Review
+        run: |
+          # CodeRabbit 리뷰 상태 확인
+          reviews=$(gh pr view ${{ github.event.pull_request.number }} --json reviews -q '.reviews[].state')
+          if echo "$reviews" | grep -q "APPROVED"; then
+            echo "CodeRabbit review approved"
+          else
+            echo "Waiting for CodeRabbit review approval"
+            exit 1
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_PAT }}
 
       - name: Merge PR if build success
         if: success()
