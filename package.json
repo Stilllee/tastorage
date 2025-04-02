@@ -38,9 +38,9 @@
   },
   "dependencies": {
     "js-cookie": "^3.0.5",
-    "next": "15.0.0-rc.0",
-    "react": "19.0.0-rc-f994737d14-20240522",
-    "react-dom": "19.0.0-rc-f994737d14-20240522",
+    "next": "^15.2.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-icons": "^5.3.0"
   },
   "devDependencies": {
