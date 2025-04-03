@@ -16,12 +16,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Merge develop into main
+      - name: Squash merge develop into main
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
+
+          # 가장 최근 머지된 PR의 제목 가져오기
+          PR_TITLE=$(gh pr list --base develop --state merged --limit 1 --json title --jq '.[0].title')
+
           git checkout main
-          git merge develop
+          git merge --squash develop
+          git commit -m "$PR_TITLE"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_PAT }}
