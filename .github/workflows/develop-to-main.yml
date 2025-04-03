@@ -28,6 +28,6 @@ jobs:
           git checkout main
           git merge --squash develop
           git commit -m "$PR_TITLE"
-          git push origin main --admin
+          git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_PAT }}
