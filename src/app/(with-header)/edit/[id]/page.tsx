@@ -2,9 +2,14 @@ import { RecipeData } from "@/types";
 import RecipeForm from "@/app/components/RecipeForm";
 import { notFound } from "next/navigation";
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe/${params.id}`,
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe/${id}`,
     { cache: "force-cache" },
   );
   if (res.status === 404) return notFound();
