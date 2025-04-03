@@ -36,6 +36,6 @@ jobs:
       - name: Merge PR if build success
         if: success()
         run: |
-          gh pr merge ${{ github.event.pull_request.number }} --merge
+          gh pr merge ${{ github.event.pull_request.number }} --merge --auto --admin
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_PAT }}
