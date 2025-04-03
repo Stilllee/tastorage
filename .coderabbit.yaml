@@ -7,11 +7,12 @@ reviews:
   poem: false
   review_status: true
   collapse_walkthrough: false
+  abort_on_close: false
   auto_review:
     enabled: true
     drafts: false
     base_branches:
       - develop
-    abort_on_close: false
+
 chat:
   auto_reply: true
