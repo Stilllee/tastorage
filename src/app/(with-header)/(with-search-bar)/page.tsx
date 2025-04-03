@@ -3,14 +3,8 @@ import RecipeItem from "@/app/components/RecipeItem";
 import RecipeListSkeleton from "@/app/components/loading/RecipeListSkeleton";
 import { Suspense } from "react";
 
-const REVALIDATE_TIME_24_HOURS = 86400;
-
-export const revalidate = REVALIDATE_TIME_24_HOURS;
-
 async function AllRecipes() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe`, {
-    next: { revalidate: REVALIDATE_TIME_24_HOURS },
-  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe`);
   if (!res.ok) {
     throw new Error(
       `레시피 목록을 가져오지 못했습니다: ${res.status} ${res.statusText}`,
