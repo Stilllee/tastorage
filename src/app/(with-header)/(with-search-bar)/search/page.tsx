@@ -28,14 +28,15 @@ async function SearchResult({ q }: { q: string }) {
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { q?: string };
+  searchParams: Promise<{ q?: string }>;
 }) {
+  const { q } = await searchParams;
   return (
     <>
       <h2 className="sr-only">레시피 검색 결과</h2>
       <div className="flex flex-col items-center">
-        <Suspense key={searchParams.q || ""} fallback={<LoadingSpinner />}>
-          <SearchResult q={searchParams.q || ""} />
+        <Suspense key={q || ""} fallback={<LoadingSpinner />}>
+          <SearchResult q={q || ""} />
         </Suspense>
       </div>
     </>
