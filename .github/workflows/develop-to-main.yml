@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.WORKFLOW_PAT }}
 
       - name: Squash merge develop into main
         run: |
@@ -27,6 +28,6 @@ jobs:
           git checkout main
           git merge --squash develop
           git commit -m "$PR_TITLE"
-          git push origin main --admin
+          git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_PAT }}
