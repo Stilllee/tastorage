@@ -2,6 +2,7 @@ import { RecipeData } from "@/types";
 import RecipeItem from "@/app/components/RecipeItem";
 import RecipeListSkeleton from "@/app/components/loading/RecipeListSkeleton";
 import { Suspense } from "react";
+import { Metadata } from "next";
 
 async function AllRecipes() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/recipe`);
@@ -23,6 +24,34 @@ async function AllRecipes() {
     </ul>
   );
 }
+
+export const metadata: Metadata = {
+  title: "테이스토리지 | 레시피 저장 서비스",
+  description: "레시피를 저장하고 관리할 수 있는 맛있는 서랍, 테이스토리지",
+  keywords: [
+    "레시피",
+    "테이스토리지",
+    "요리",
+    "레시피 정보",
+    "메뉴",
+    "조리법",
+    "음식",
+    "메뉴 추천",
+    "레시피 추천",
+  ],
+  openGraph: {
+    title: "테이스토리지",
+    description: "레시피를 저장하고 관리할 수 있는 맛있는 서랍, 테이스토리지",
+    url: "https://tastorage.vercel.app/",
+    type: "website",
+    locale: "ko_KR",
+    siteName: "테이스토리지",
+    images: ["/thumbnail.png"],
+  },
+  alternates: {
+    canonical: "https://tastorage.vercel.app/",
+  },
+};
 
 export default function Home() {
   return (
