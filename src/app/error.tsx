@@ -15,10 +15,11 @@ export default function Error({ error }: { error: Error }) {
         500
       </span>
       <div className="flex flex-col items-center justify-center gap-9">
-        <p className="text-3xl sm:text-4xl">앗, 뭔가 문제가 생겼어요!</p>
+        <p className="text-3xl sm:text-4xl">
+          {error.message || "앗, 뭔가 문제가 생겼어요!"}
+        </p>
         <p className="max-w-lg text-center text-base sm:text-lg">
-          문제를 해결중에 있습니다.
-          <br /> 잠시 후 다시 시도해 주세요.
+          잠시 후 다시 시도해 주세요.
         </p>
         <button
           className="w-60 rounded-xl bg-bgBlack py-3 text-center text-white"

@@ -33,6 +33,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { q } = await searchParams;
 
+  if (!q) {
+    return {
+      title: "전체 레시피 | 테이스토리지",
+      description: "테이스토리지의 모든 레시피를 확인해보세요!",
+      openGraph: {
+        title: "전체 레시피 | 테이스토리지",
+        description: "테이스토리지의 모든 레시피를 확인해보세요!",
+        images: ["/thumbnail.png"],
+      },
+    };
+  }
+
   return {
     title: `${q} 검색결과 | 테이스토리지`,
     description: `${q}로 검색한 레시피 목록입니다.`,

@@ -1,10 +1,6 @@
-"use client";
-
-import { useRouter } from "next/navigation";
+import HomeButton from "./components/HomeButton";
 
 export default function NotFound() {
-  const router = useRouter();
-
   return (
     <main className="flex h-screen flex-col items-center justify-center gap-16">
       <h1 className="sr-only">404 - Page Not Found</h1>
@@ -19,12 +15,7 @@ export default function NotFound() {
         <p className="max-w-lg text-center text-base sm:text-lg">
           페이지 주소를 다시 한번 확인해 주세요.
         </p>
-        <button
-          className="w-60 rounded-xl bg-main py-3 text-center text-white"
-          onClick={() => router.replace("/")}
-        >
-          홈으로 돌아가기
-        </button>
+        <HomeButton />
       </div>
     </main>
   );
