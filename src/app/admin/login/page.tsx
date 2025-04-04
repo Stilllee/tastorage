@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     description: "테이스토리지 관리자 로그인 페이지입니다.",
     images: ["/thumbnail.png"],
   },
+  robots: "noindex, nofollow",
 };
 
 export default function Page() {
