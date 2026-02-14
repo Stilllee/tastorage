@@ -38,4 +38,4 @@ jobs:
         run: |
           gh pr merge ${{ github.event.pull_request.number }} --merge --admin
         env:
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_PAT }}
+          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
